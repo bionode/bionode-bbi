@@ -16,7 +16,7 @@ function NodeFetchable(blob, opts) {
 NodeFetchable.prototype.slice = function(start, length) {
     // Both start and end are inclusive and start at 0 (http://nodejs.org/api/fs.html)
     var opts = {start: start};
-    if (length) { opts.end = start + length };
+    if (length) { opts.end = start + length - 1};
     return new NodeFetchable(this.blob, opts);
 }
 

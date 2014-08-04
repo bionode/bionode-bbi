@@ -1,4 +1,5 @@
 "use strict";
+var Promise = require('es6-promise').Promise;
 
 var spans = require('./spans');
 var Range = spans.Range;
@@ -218,7 +219,7 @@ BBIView.prototype.readWigDataById = function(chr, min, max) {
                 var blockSpan = new Range(offset[i], offset[i] + maxCirBlockSpan);
                 spans = spans ? union(spans, blockSpan) : blockSpan;
             }
-            
+
             var fetchRanges = spans.ranges();
             for (var r = 0; r < fetchRanges.length; ++r) {
                 var fr = fetchRanges[r];
@@ -320,7 +321,7 @@ BBIView.prototype.fetchFeatures = function(filter, blocks) {
     blocks.sort(function(b0, b1) {
         return (b0.offset|0) - (b1.offset|0);
     });
-    
+
     var blocksToFetch = [];
     if (blocks.length > 0) {
         var current = shallowCopy(blocks[0]);
@@ -347,17 +348,17 @@ BBIView.prototype.fetchFeatures = function(filter, blocks) {
         } else {
             var block = blocksToFetch[bi];
             return thisB.bbi.data.slice(block.offset, block.size).fetch()
-              .then(function(result) {     
+              .then(function(result) {
                 for (var oi = 0; oi < block.offsets.length; ++oi) {
                     if (thisB.bbi.uncompressBufSize > 0) {
                         var data = jszlib_inflate_buffer(result, block.offsets[oi] - block.offset + 2);
                         thisB.parseFeatures(data, 0, data.byteLength, filter, features);
                     } else {
                         thisB.parseFeatures(
-                            result, 
+                            result,
                             block.offsets[oi] - block.offset,
                             oi < block.offsets.length - 1 ? block.offsets[oi + 1] - block.offset : result.byteLength,
-                            block.filter, 
+                            block.filter,
                             features);
                     }
                 }
@@ -386,7 +387,7 @@ BBIView.prototype.parseFeatures = function(data, offset, limit, filter, features
             var maxVal    = fa[(i*8)+5];
             var sumData   = fa[(i*8)+6];
             var sumSqData = fa[(i*8)+7];
-            
+
             if (filter(chromId, start + 1, end)) {
                 var summaryOpts = {type: 'bigwig', score: sumData/validCnt, maxScore: maxVal};
                 if (this.bbi.type == 'bigbed') {
@@ -407,7 +408,7 @@ BBIView.prototype.parseFeatures = function(data, offset, limit, filter, features
         var itemSpan = la[4];
         var blockType = ba[20];
         var itemCount = sa[11];
-        
+
         if (blockType == BIG_WIG_TYPE_FSTEP) {
             for (var i = 0; i < itemCount; ++i) {
                 var score = fa[i + 6];
@@ -462,7 +463,7 @@ BBIView.prototype.parseFeatures = function(data, offset, limit, filter, features
             }
 
             var featureOpts = {};
-            
+
             var bedColumns;
             if (rest.length > 0) {
                 bedColumns = rest.split('\t');
@@ -502,7 +503,7 @@ BBIView.prototype.parseFeatures = function(data, offset, limit, filter, features
                     var blockCount = bedColumns[6]|0;
                     var blockSizes = bedColumns[7].split(',');
                     var blockStarts = bedColumns[8].split(',');
-                    
+
                     featureOpts.type = 'transcript';
                     var grp = {};
                     for (var k in featureOpts) {
@@ -536,7 +537,7 @@ BBIView.prototype.parseFeatures = function(data, offset, limit, filter, features
                         spanList.push(span);
                     }
                     var spans = union(spanList);
-                    
+
                     var tsList = spans.ranges();
                     for (var s = 0; s < tsList.length; ++s) {
                         var ts = tsList[s];

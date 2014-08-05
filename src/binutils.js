@@ -3,6 +3,7 @@
 // Imports
 
 var Promise = require('es6-promise').Promise;
+var XMLHttpRequest = require('xhr2')
 
 function BlobFetchable(b) {
     this.blob = b;
@@ -149,7 +150,7 @@ URLFetchable.prototype.fetch = function() {
         if (self.opts.credentials) {
             req.withCredentials = true;
         }
-        req.send('');
+        req.send();
     });
 };
 

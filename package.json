@@ -10,7 +10,9 @@
   "dependencies": {
     "es6-promise": "~0.1.2",
     "jszlib": "dasmoth/jszlib",
-    "concat-stream": "~1.4.6"
+    "concat-stream": "~1.4.6",
+    "through2": "~0.5.1",
+    "xhr2": "0.0.7"
   },
   "devDependencies": {
     "gulp-concat": "~2.2.0",
@@ -21,8 +23,19 @@
     "karma-jasmine": "~0.1.5",
     "gulp-rename": "~1.2.0",
     "watchify": "~0.8.3",
-    "karma-bro": "~0.2.2"
+    "karma-bro": "~0.2.2",
+    "should": "~4.0.4",
+    "mocha": "~1.21.3",
+    "istanbul": "~0.3.0"
   },
-
-  "main": "src/bbi.js"
+  "main": "index.js",
+  "bin": {
+    "bionode-bbi": "cli.js"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "build-docs": "docco ./lib/bionode-bbi.js",
+    "coverage": "istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec && rm -rf ./coverage",
+    "coveralls": "istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage"
+  }
 }

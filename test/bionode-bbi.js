@@ -1,19 +1,3 @@
-// var nf = require('./src/node-fetchable');
-// var bbi = require('./src/bbi');
-// nf.NodeFetchable('test-leap.bb')
-
-// var bb
-// var file =
-//
-// file.fetch().then(function (data) {
-//   // console.log(data)
-// })
-
-
-// var bwa = require('../')
-// var fs = require('fs')
-// var crypto = require('crypto')
-// var request = require('request')
 var bin = require('../src/binutils')
 var bbi = require('../src/bbi')
 var nf = require('../src/node-fetchable')
@@ -21,9 +5,6 @@ var data = require('./data')
 
 
 var should = require('should')
-// var tool = require('tool-stream')
-// var through = require('through2')
-// var async = require('async')
 
 require('mocha')
 

@@ -1,0 +1,61 @@
+{
+   "test1" : {
+      "zoomLevels" : [
+         {
+            "dataOffset" : 6738,
+            "reduction" : 40960000,
+            "indexOffset" : 6809
+         }
+      ],
+      "maxID" : 2,
+      "chromTreeOffset" : 344,
+      "chromsToIDs" : {
+         "22" : 2,
+         "chr1" : 0,
+         "1" : 0,
+         "chr2" : 1,
+         "chr22" : 2,
+         "2" : 1
+      },
+      "uncompressBufSize" : 16384,
+      "asOffset" : 0,
+      "numZoomLevels" : 1,
+      "unzoomedDataOffset" : 419,
+      "extHeaderOffset" : 0,
+      "data" : {
+         "opts" : {},
+         "url" : "http://www.biodalliance.org/datasets/tests/test-leap.bb",
+         "start" : 0
+      },
+      "unzoomedIndexOffset" : 518,
+      "fieldCount" : 3,
+      "totalSummaryOffset" : 304,
+      "idsToChroms" : {
+         "1" : "chr2",
+         "0" : "chr1",
+         "2" : "chr22"
+      },
+      "definedFieldCount" : 3,
+      "type" : "bigbed"
+   },
+   "test2" : [
+      {
+         "_chromId" : 0,
+         "min" : 10000001,
+         "max" : 10010000,
+         "seqName" : "chr1"
+      },
+      {
+         "_chromId" : 0,
+         "min" : 20000001,
+         "max" : 20010000,
+         "seqName" : "chr1"
+      },
+      {
+         "_chromId" : 0,
+         "min" : 30000001,
+         "max" : 30010000,
+         "seqName" : "chr1"
+      }
+   ]
+}

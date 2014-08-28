@@ -1,6 +1,6 @@
 {
   "name": "genomics-fetchers",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Common back-ends for Javascript genomics tools.",
   "homepage": "https://www.biodalliance.org/",
   "repository": {
